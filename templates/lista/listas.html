@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+    <main class="container-fluid">
+        <div class="d-flex justify-content-between mt-3">
+            <h2>Lista</h2>
+            <a href="/lista/cadastrar_lista"> Cadastrar Lista</a>
+        </div>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Estabelecimento</th>
+                <th>Status</th>
+                <th>*</th>
+                <th>*</th>
+            </tr>
+            {% for l in listas %}
+            <tr>
+                <td>{{ l.id_lista }}</td>
+                <td>{{ l.estabelecimento }}</td>
+                {% if l.status_lista == 0 %}
+                    <td> Aberto </td>
+                {% else %}
+                    <td> Fechado </td>
+                {% endif %}
+                <td><a href="/alterar_lista/{{ l.id_lista }}">Alterar</a></td>
+                <td><a href="">ADD itens</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+{% endblock %}

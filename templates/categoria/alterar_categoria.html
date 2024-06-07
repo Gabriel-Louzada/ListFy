@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+    <main class="container-fluid mt-3">
+        <h2 class="mt-3">Alteração de Categoria</h2>
+        <form class="row g-3 needs-validation" method="post" action="/categorias/post_cadastrar_categoria" novalidate>
+            <div class="col-md-12">
+                <input type="hidden" name="id_categoria" value="{{ categoria.id_categoria }}">
+                <label for="nome_categoria" class="form-label">Nome:</label>
+                <input type="text" name="nome_categoria" class="form-control" id="nome_categoria" value="{{ categoria.nome_categoria }}" required>
+                <div class="valid-feedback">
+                  OK
+                </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </main>
+{% endblock %}

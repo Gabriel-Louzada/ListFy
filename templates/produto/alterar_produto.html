@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+<main class="container-fluid">
+    <h2 class="mt-3">Cadastro de Produto</h2>
+    <form class="row g-3 needs-validation" method="post" action="/produto/post_alterar_produto" novalidate>
+        <div class="col-md-4">
+            <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">
+            <label for="produto.nome_produto" class="form-label">Nome:</label>
+            <input type="text" name="nome_produto" class="form-control" id="produto.nome_produto" value="{{ produto.nome_produto }}" required>
+            <div class="valid-feedback">
+              OK
+            </div>
+        </div>
+        <div class="col-md-8">
+            <label for="produto.valor_produto" class="form-label">Preço:</label>
+            <input type="text" name="valor_produto" class="form-control" id="produto.valor_produto" value="{{ produto.valor_produto }}" required>
+            <div class="valid-feedback">
+              ok
+            </div>
+        </div>
+        <div class="col-md-12">
+          <label for="id_categoria" class="form-label">Categoria</label>
+          <select class="form-select" id="id_categoria" name="id_categoria" required>
+            <option value="">Categoria</option>
+            {% for c in categoria %}
+            <option value="{{ c.id_categoria }}">{{ c.nome_categoria }}</option>
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback">
+            ok
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Cadastrar</button>
+        </div>
+    </form>
+</main>
+{% endblock %}

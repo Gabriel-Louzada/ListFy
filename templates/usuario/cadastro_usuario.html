@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+    <main class="container-fluid">
+        <h2 class="mt-3">Cadastro de Produto</h2>
+        <form class="row g-3 needs-validation" method="post" action="/usuario/post_cadastrar_usuario" novalidate>
+            <div class="col-md-12">
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" name="nome" class="form-control" id="nome" placeholder="Bruno do Vale" required>
+                <div class="valid-feedback">
+                  OK
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="text" name="email" class="form-control" id="email" placeholder="ADM@listFy.com.br" required>
+                <div class="valid-feedback">
+                  ok
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="senha" class="form-label">Senha:</label>
+                <input type="password" name="senha" class="form-control" id="senha" placeholder="123" required>
+                <div class="valid-feedback">
+                  ok
+                </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </main>
+
+{% endblock %}
