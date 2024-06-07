@@ -8,7 +8,7 @@ from repo.lista import *
 from repo.produto import *
 from repo.promocao import criar_tabela_promocao
 from repo.usuario import *
-from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes
+from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes
 
 criar_tabela_usuario()
 criar_tabela_produto()
@@ -27,6 +27,7 @@ app.include_router(categoria_routes.router)
 app.include_router(lista_routes.router)
 app.include_router(main_router.router)
 app.include_router(usuario_routes.router)
+app.include_router(itens_lista_routes.router)
 
 def obter_usuario_logado():
     return Usuario("Gabriel Louzada", False)

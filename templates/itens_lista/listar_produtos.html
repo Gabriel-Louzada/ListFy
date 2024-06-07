@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+    <main class="container-fluid">
+        <div class="d-flex justify-content-between mt-3">
+            <h2>Produtos</h2>
+            <a href="/produto/cadastrar_produto"> Cadastrar Produto</a>
+        </div>
+        <hr>
+        <table class="table">
+            <tr>
+                <td>#</td>
+                <td style="text-align: center;">Nome Produto</td>
+                <td style="text-align: center;">Categoria</td>
+                <td style="text-align: center;">Valor Produto</td>
+                <td style="text-align: center;">*</td>
+            </tr>
+            <!-- faz uma iteração pelos produtos enviados pela rota -->
+            {% for p in produtos %}
+            <tr>
+                <td>{{ p.id_produto }}</td>
+                <td style="text-align: center;">{{ p.nome_produto }}</td>
+                <td style="text-align: center;">{{ p.id_categoria }}</td>
+                <td style="text-align: center;">R$:{{ p.valor_produto }}</td>
+                <td style="text-align: center;" ><a href="/produto/alterar_produto/{{ p.id_produto }}">alterar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+{% endblock %}
