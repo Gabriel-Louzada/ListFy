@@ -25,8 +25,10 @@
                 {% else %}
                     <td> Fechado </td>
                 {% endif %}
-                <td><a href="/alterar_lista/{{ l.id_lista }}" class="btn btn-primary">Alterar</a></td>
-                <td><a href="/itens_lista" class="btn btn-primary">ADD itens</a></td>
+                <td><a href="/alterar_lista/{{ l.id_lista }}"class="btn btn-primary">Alterar</a></td>
+                <td>
+                    <a href="/itens_lista/categorias/{{ l.id_lista }}"class="btn btn-primary">ADD Itens</a>
+                </td>
             </tr>
             {% endfor %}
         </table>
