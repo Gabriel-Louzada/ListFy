@@ -43,3 +43,8 @@ SELECT id_produto, nome_produto, id_categoria, valor_produto
   FROM produto
  WHERE nome_produto LIKE ?
 '''
+SQL_OBTER_PRODUTOS_CATEGORIA ='''
+SELECT id_produto, nome_produto, id_categoria, valor_produto
+  FROM produto
+ WHERE id_categoria = ?
+'''

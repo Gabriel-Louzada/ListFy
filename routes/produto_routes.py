@@ -11,8 +11,6 @@ templates = Jinja2Templates(directory = "templates")
 
 @router.get("/", response_class=HTMLResponse)
 async def get_produtos(request: Request):
-    # request: objeto com dados da requisição do cliente
-    # retorna o arquivo produtos.html
     produtos = obter_todos_produtos()
     return templates.TemplateResponse("/produto/listar_produtos.html", {"request": request, "produtos": produtos})
 
@@ -20,6 +18,11 @@ async def get_produtos(request: Request):
 async def get_produtos(request: Request, nome_produto: str = ''):
     produto = obter_um_produto_nome(nome_produto)
     return templates.TemplateResponse("/produto/um_produto.html", {"request": request, "produto": produto})
+
+@router.get("/categoria/{id_categoria}", response_class=HTMLResponse)
+async def get_produtos(request: Request, id_categoria: int = 0):
+    produtos = obter_produtos_categoria(id_categoria)
+    return templates.TemplateResponse("/produto/listar_produtos_categoria.html", {"request": request, "produtos": produtos})
 
 @router.get("/cadastrar_produto", response_class=HTMLResponse)
 async def get_cadastrar(request: Request):

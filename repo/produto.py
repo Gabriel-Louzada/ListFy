@@ -10,17 +10,7 @@ def criar_tabela_produto():
             cursor.execute(SQL_CREATE_PRODUTO)
     except sqlite3.Error as e:
         print(f"Erro ao criar tabela Produto {e}")
-
-def obter_todos_produtos() -> list[Produto]:
-    try:
-        with criar_conexao() as conexao:
-            cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_TODOS_PRODUTOS).fetchall()
-            return [Produto(*t) for t in tupla]
-    except sqlite3.Error as e:
-        print(f"Função obter_todos_produtos nao esta funcionando corretamente {e}")
-        return None
-    
+ 
 def inserir_produtos(produto: Produto):
     try:
         with criar_conexao() as conexao:
@@ -73,4 +63,24 @@ def obter_um_produto_nome(nome_produto: str) -> Produto:
             return Produto(*tupla)
     except sqlite3.Error as e:
         print(f"Função obter_um_produto nao esta funcionando corretamente {e}")
+        return None
+    
+def obter_todos_produtos() -> list[Produto]:
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tupla = cursor.execute(SQL_OBTER_TODOS_PRODUTOS).fetchall()
+            return [Produto(*t) for t in tupla]
+    except sqlite3.Error as e:
+        print(f"Função obter_todos_produtos nao esta funcionando corretamente {e}")
+        return None
+    
+def obter_produtos_categoria(id_categoria: int) -> list[Produto]:
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tupla = cursor.execute(SQL_OBTER_PRODUTOS_CATEGORIA, (id_categoria,)).fetchall()
+            return [Produto(*t) for t in tupla]
+    except sqlite3.Error as e:
+        print(f"Função obter_um_produto_nome nao esta funcionando corretamente {e}")
         return None

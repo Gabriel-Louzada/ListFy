@@ -13,8 +13,8 @@
             <a href="/itens_lista/produtos">Ver todos os produtos Cadastrados</a>
         </div>
         <div class="col-4">
-            <form class="d-flex" action="get" method="/">
-                <input class="form-control me-2" type="search" placeholder="Digite o nome do produto a pesquisar" aria-label="Search">
+            <form class="d-flex" action="get" method="/itens_lista/um_produto">
+                <input class="form-control me-2" name="nome_produto" id="nome_produto" type="search" placeholder="Digite o nome do produto a pesquisar" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
               </form>   
         </div>
@@ -32,7 +32,7 @@
                         <input type="hidden" name="id-lista" value="id-lista">
                         <div>
                             <label for="" class="form-label">Quantidade:</label>
-                        <input type="text" name="" class="form-control" id="" value="" required>
+                            <input type="text" name="" class="form-control" id="" value="" required>
                         </div>
                         <div>
                             <label for="" class="form-label">Valor Unitario:</label>

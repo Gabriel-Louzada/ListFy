@@ -4,23 +4,25 @@
 
 {% block conteudo %}
     <main class="container-fluid" >
-        <div class="d-flex justify-content-between mt-3">
+        <div class="d-flex justify-content-between ">
             <h2>Categorias</h2>
             <a href="/categorias/cadastrar_categoria"> Cadastrar Categoria</a>
         </div>
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th>Nome Categoria</th>
-                <th>*</th>
-            </tr>
+        <hr>
+        <div class="row container-fluid d-flex justify-content-evenly">
             {% for c in categoria %}
-            <tr>
-                <td>{{ c.id_categoria }}</td>
-                <td>{{ c.nome_categoria }}</td>
-                <td><a href="/categorias/alterar_categoria/{{ c.id_categoria }}"> Alterar</a></td>
-            </tr>
-            {% endfor %}
-        </table>
+            <div class="card col-12 mb-3" style="width: 18rem;">
+                <div>
+                    <h3 class="mt-3">{{ c.nome_categoria }}</h3>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title m-3">Codigo: {{c.id_categoria}}</h5>
+                    <div class="col-12">
+                        <a href="/produto/categoria/{{c.id_categoria}}" class="btn btn-primary"> Acessar Categoria</a>
+                    </div>  
+                </div>
+            </div> 
+            {% endfor %}      
+        </div>
     </main>
 {% endblock %}

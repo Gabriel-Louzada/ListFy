@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Catedorias{% endblock %}
+
+{% block conteudo %}
+    <main class="container-fluid" >
+        <div class="d-flex justify-content-between mt-3">
+            <h2>Categorias</h2>
+            <a href="/categorias/cadastrar_categoria"> Cadastrar Categoria</a>
+        </div>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Nome Categoria</th>
+                <th>*</th>
+            </tr>
+            {% for c in categoria %}
+            <tr>
+                <td>{{ c.id_categoria }}</td>
+                <td>{{ c.nome_categoria }}</td>
+                <td><a href="/categorias/alterar_categoria/{{ c.id_categoria }}"> Alterar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+{% endblock %}

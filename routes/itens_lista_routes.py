@@ -19,6 +19,6 @@ async def get_produtos(request: Request):
     return templates.TemplateResponse("/itens_lista/listar_produtos.html", {"request": request, "produtos": produtos})
 
 @router.get("/um_produto", response_class=HTMLResponse)
-async def get_produtos(request: Request, nome_produto: str = ''):
-    produto = obter_um_produto_nome(nome_produto)
-    return templates.TemplateResponse("/itens_lista/um_produto.html", {"request": request, "produto": produto})
+async def get_um_produto(request: Request, nome_produto: str = ''):
+    produtos = obter_um_produto_nome(nome_produto)
+    return templates.TemplateResponse("/itens_lista/um_produto.html", {"request": request, "produtos": produtos})

@@ -17,6 +17,7 @@ async def get_listar_categoria(request: Request):
 async def get_cadastrar_categoria(request: Request):
     return templates.TemplateResponse("/categoria/cadastro_categoria.html",{"request":request})
 
+
 @router.post("/post_cadastrar_categoria", response_class=RedirectResponse)
 async def post_cad_categoria(
     nome_categoria: str = Form()):

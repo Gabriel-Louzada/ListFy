@@ -5,17 +5,17 @@
 {% block conteudo %}
     <main class="container-fluid">
         <div class="d-flex justify-content-between mt-3">
-            <h2>Colocar produto na lista</h2>
+            <h2>Produtos</h2>
             <a href="/produto/cadastrar_produto"> Cadastrar Produto</a>
         </div>
         <hr>
         <table class="table">
             <tr>
                 <td>#</td>
-                <td style="text-align: center;"><b>Nome Produto</b></td>
-                <td style="text-align: center;"><b>Categoria</b></td>
-                <td style="text-align: center;"><b>Valor Produto</b></td>
-                <td style="text-align: center;"><b>*</b></td>
+                <td style="text-align: center;">Nome Produto</td>
+                <td style="text-align: center;">Categoria</td>
+                <td style="text-align: center;">Valor Produto</td>
+                <td style="text-align: center;">*</td>
             </tr>
             <!-- faz uma iteração pelos produtos enviados pela rota -->
             {% for p in produtos %}
@@ -24,11 +24,7 @@
                 <td style="text-align: center;">{{ p.nome_produto }}</td>
                 <td style="text-align: center;">{{ p.id_categoria }}</td>
                 <td style="text-align: center;">R$:{{ p.valor_produto }}</td>
-                <td style="text-align: center;" > <div>
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btn-check-outlined">Check</label>
-                </div>  
-            </td>
+                <td style="text-align: center;" ><a href="/produto/alterar_produto/{{ p.id_produto }}">alterar</a></td>
             </tr>
             {% endfor %}
         </table>
