@@ -6,7 +6,7 @@
     <main class="container-fluid">
         <div class="d-flex justify-content-between mt-3">
             <h2>Lista</h2>
-            <a href="/lista/cadastrar_lista"> Cadastrar Lista</a>
+            <a href="/lista/cadastrar_lista" class="btn btn-primary"> Cadastrar Lista</a>
         </div>
         <table class="table">
             <tr>
@@ -25,10 +25,15 @@
                 {% else %}
                     <td> Fechado </td>
                 {% endif %}
-                <td><a href="/alterar_lista/{{ l.id_lista }}">Alterar</a></td>
-                <td><a href="/itens_lista">ADD itens</a></td>
+                <td><a href="/alterar_lista/{{ l.id_lista }}" class="btn btn-primary">Alterar</a></td>
+                <td><a href="/itens_lista" class="btn btn-primary">ADD itens</a></td>
             </tr>
             {% endfor %}
         </table>
+        <div class="row">
+            <div class="col-12 mb-5 d-flex justify-content-end">
+                <a href="/" class="btn btn-danger"> Voltar</a>
+            </div>
+        </div>
     </main>
 {% endblock %}

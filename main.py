@@ -17,6 +17,7 @@ criar_tabela_lista()
 criar_tabela_promocao()
 criar_tabela_itens_lista()
 
+#teste
 app = FastAPI()
 
 #Esse objeto representa os arquivos HTML da pasta templates

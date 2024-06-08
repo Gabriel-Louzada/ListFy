@@ -3,7 +3,7 @@
 {% block titulo %}Cadastro de Produto{% endblock %}
 
 {% block conteudo %}
-    <main class="container-fluid mt-3">
+    <main class="container mt-3">
         <h2>Cadastro de Categoria</h2>
         <form class="row g-3 needs-validation" method="post" action="/categorias/post_cadastrar_categoria" novalidate>
             <input type="hidden" name="id_categoria" value="id_categoria">
@@ -16,6 +16,7 @@
             </div>
             <div class="col-12">
                 <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <a href="/categorias" class="btn btn-danger mx-2"> Voltar</a>
               </div>
         </form>
     </main>

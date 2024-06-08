@@ -4,9 +4,9 @@
 
 {% block conteudo %}
     <main class="container-fluid" >
-        <div class="d-flex justify-content-between ">
+        <div class="d-flex justify-content-between mt-3 ">
             <h2>Categorias</h2>
-            <a href="/categorias/cadastrar_categoria"> Cadastrar Categoria</a>
+            <a href="/categorias/cadastrar_categoria" class="btn btn-primary"> Cadastrar</a>
         </div>
         <hr>
         <div class="row container-fluid d-flex justify-content-evenly">
@@ -23,6 +23,11 @@
                 </div>
             </div> 
             {% endfor %}      
+        </div>
+        <div class="row">
+            <div class="col-12 mb-5 d-flex justify-content-end">
+                <a href="/" class="btn btn-danger"> Voltar</a>
+            </div>
         </div>
     </main>
 {% endblock %}
