@@ -29,6 +29,7 @@ async def get_um_produto(request: Request, nome_produto: str = ''):
     produtos = obter_um_produto_nome(nome_produto)
     return templates.TemplateResponse("/itens_lista/um_produto.html", {"request": request, "produtos": produtos})
 
+
 @router.get("/categorias/{id_lista:int}", response_class=HTMLResponse)
 async def get_listar_categoria(request: Request,id_lista: int = 0):
     categoria = obter_todas_categorias()
