@@ -1,9 +1,9 @@
 SQL_CREATE_ITENS_LISTA = '''
 CREATE TABLE IF NOT EXISTS "itens_lista" (
 	"id_produto"	INTEGER NOT NULL,
-	"id_lista"	INTEGER,
+	"id_lista"	    INTEGER,
 	"quantidade"	REAL NOT NULL,
-	"valor"	REAL NOT NULL,
+	"valor"      	REAL NOT NULL,
 	FOREIGN KEY("id_lista") REFERENCES "lista"("id_lista"),
 	FOREIGN KEY("id_produto") REFERENCES "produto"("id_produto"),
 	PRIMARY KEY("id_lista")
