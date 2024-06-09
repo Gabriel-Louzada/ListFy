@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 
 from models.lista import Lista
 from repo.lista import *
+from repo.itens_lista import * 
 
 router = APIRouter(prefix="/lista")
 templates = Jinja2Templates(directory = "templates")
@@ -26,6 +27,12 @@ async def post_cad_lista(
     lista = Lista(0,estabelecimento,id_user,status_lista)
     inserir_lista(lista)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
+
+@router.get("/abrir/{id_lista:int}",response_class=HTMLResponse)
+async def get_abrir_lista(request:Request, id_lista: int=0 ):
+    itens_lista = obter_itens_lista_nomes(id_lista)
+    lista = obter_uma_lista(id_lista)
+    return templates.TemplateResponse("/lista/listar_produtos.html", {"request":request, "itens_lista":itens_lista, "lista":lista})
 
 @router.get("/alterar_lista/{id_lista:int}",response_class=HTMLResponse)
 async def get_alterar_lista(request: Request):

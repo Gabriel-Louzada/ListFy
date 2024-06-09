@@ -20,14 +20,27 @@ def obter_todas_itens_lista() -> list[Itens_lista]:
     except sqlite3.Error as e:
         print(f"Função obter_todas_itens_lista não esta funcionando corretamente {e}")
         return None 
+
+def obter_itens_lista_nomes(id_lista:int) -> list[Itens_lista]:
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tuplas = cursor.execute(SQL_OBTER_ITENS_LISTA_NOMES,(id_lista,)).fetchall()
+            return [Itens_lista(*t) for t in tuplas]
+    except sqlite3.Error as e:
+        print(f"Função obter_todas_itens_lista não esta funcionando corretamente {e}")
+        return None 
+
     
 def inserir_itens_lista(itens_lista: Itens_lista):
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
             cursor.execute(SQL_INSERT_ITENS_LISTA,(
+                itens_lista.id_produto,
+                itens_lista.id_lista,
                 itens_lista.quantidade,
-                itens_lista.id_lista
+                itens_lista.valor_produto
             ))
     except sqlite3.Error as e:
         print(f"Função inserir_itens_lista não esta funcionando corretamente {e}")

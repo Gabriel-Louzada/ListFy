@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block titulo %}Produtos - Lista{% endblock %}
+
+{% block conteudo %}
+<main class="container-fluid">
+    <div class="d-flex justify-content-between mt-3">
+        <h2>Lista - {{ lista.estabelecimento }}</h2>
+        <a href="/produto/cadastrar_produto" class="btn btn-primary">Cadastrar Produto</a>
+    </div>
+    <hr>
+    <form id="productForm" action="/itens_lista/post_itens_lista/{{ lista.id_lista }}" method="post">
+        <div class="row container-fluid d-flex justify-content-evenly">
+            {% for p in itens_lista %}
+            <div class="card col-12 mb-3" style="width: 18rem;">
+                <input type="hidden" name="id_produto_{{ p.id_produto }}" value="{{ p.id_produto }}">
+                <div>
+                    <h3 class="mt-3">{{ p.nome_produto }}</h3>
+                </div>
+                <div class="card-body">
+                    <h5>Código: {{ p.id_produto }}</h5>
+                    <div>
+                        <label for="valor_produto_{{ p.id_produto }}">Valor R$:</label>
+                        <input style="text-align: center;" type="text" class="form-control" id="valor_produto_{{ p.id_produto }}"
+                            name="valor_produto_{{ p.id_produto }}" value="{{ p.valor_produto }}">
+                    </div>
+                    <div>
+                        <label for="quantidade_{{ p.id_produto }}" class="m-3">Quantidade:</label>
+                        <input style="text-align: center;" type="text" class="form-control mb-3" id="quantidade_{{ p.id_produto }}"
+                            name="quantidade_{{ p.id_produto }}" value="{{ p.quantidade }}">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" class="btn-check" id="checkbox_{{ p.id_produto }}" name="checkbox_{{ p.id_produto }}"
+                            autocomplete="off" value="{{ p.id_produto }}" onclick="calculateTotal()">
+                        <label class="btn btn-outline-primary" for="checkbox_{{ p.id_produto }}">Check</label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 id="total_quantidade">Total Produtos: 0</h3>
+                <h3 id="total_valor">Total Valor: R$ 0.00</h3>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-primary mx-3" type="submit">ADD a lista</button>
+                <a href="/lista" class="btn btn-danger">Voltar</a>
+            </div>
+        </div>
+    </form>
+</main>
+
+<script>
+    function calculateTotal() {
+        var checkboxes = document.querySelectorAll('input[type=checkbox]');
+        var totalQuantidade = 0;
+        var totalValor = 0;
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                var id = checkbox.value;
+                var valor = parseFloat(document.getElementById('valor_produto_' + id).value);
+                var quantidade = parseInt(document.getElementById('quantidade_' + id).value);
+                
+                totalValor += valor * quantidade;
+                totalQuantidade += quantidade;
+            }
+        });
+
+        document.getElementById('total_quantidade').innerText = 'Total Quantidade: ' + totalQuantidade;
+        document.getElementById('total_valor').innerText = 'Total Valor: R$ ' + totalValor.toFixed(2);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        calculateTotal();
+    });
+</script>
+{% endblock %}

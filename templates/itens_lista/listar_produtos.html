@@ -9,39 +9,41 @@
         <a href="/produto/cadastrar_produto" class="btn btn-primary"> Cadastrar Produto</a>
     </div>
     <hr>
-    <form action="/itens_lista/post_itens_lista/{{lista.id_lista}}" method="post">
-        <div class="row container-fluid d-flex justify-content-evenly">
-            {% for p in produtos %}
-            {% set id_produto = p.id_produto %}
-            <div class="card col-12 mb-3" style="width: 18rem;">
+    <div class="row container-fluid d-flex justify-content-evenly">
+        {% for p in produtos %}
+        {% set id_produto = p.id_produto %}
+        <div class="card col-12 mb-3" style="width: 18rem;">
+            <form action="/itens_lista/post_itens_lista/{{lista.id_lista}}" method="post">
+                <input style="text-align: center;" type="hidden" id="id_produto" name="id_produto" value="{{ id_produto }}">
                 <div>
                     <h3 class="mt-3">{{ p.nome_produto}}</h3>
                 </div>
                 <div class="card-body">
+                    <h5>Codigo: {{p.id_produto}}</h5>
                     <div>
-                        <label for="{{valor_produto}} m-3">Valor R$:</label>
-                        <input style="text-align: center;" type="text" class="form-control mb-3" id="valor_produto" name="valor_produto" value="{{ p.valor_produto }}">
+                        <label for="{{valor_produto}}">Valor R$:</label>
+                        <input style="text-align: center;" type="text" class="form-control" id="valor_produto"
+                            name="valor_produto" value="{{ p.valor_produto }}">
 
                     </div>
                     <div>
                         <label for="{{quantidade}} m-3">Quantidade:</label>
-                        <input style="text-align: center;" type="text" class="form-control mb-3" id="quantidade" name="quantidade" value="1">
+                        <input style="text-align: center;" type="text" class="form-control mb-3" id="quantidade"
+                            name="quantidade">
 
                     </div>
                     <div class="col-12">
-                        <input type="checkbox" class="btn-check" value="{{id_produto}}" name="id_produto" id="{{ id_produto }}">
-                        <label class="btn btn-outline-primary" for="{{ id_produto }}">Check</label>
+                        <button class="btn btn-primary mx-3" type="submit">ADD a lista</button>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+            </form>
         </div>
-        <div class="row">
-            <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-primary mx-3" type="submit">ADD a lista</button>
-                <a href="/lista" class="btn btn-danger"> Voltar</a>
-            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+            <a href="/lista" class="btn btn-danger"> Voltar</a>
         </div>
-    </form>
+    </div>
 </main>
 {% endblock %}

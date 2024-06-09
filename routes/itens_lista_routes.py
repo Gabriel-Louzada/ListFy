@@ -43,7 +43,6 @@ async def post_itens_lista(
     inserir_itens_lista(itens_lista)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
     
-    
 @router.get("/um_produto", response_class=HTMLResponse)
 async def get_um_produto(request: Request, nome_produto: str = ''):
     produtos = obter_um_produto_nome(nome_produto)
@@ -53,3 +52,4 @@ async def get_um_produto(request: Request, nome_produto: str = ''):
 async def get_listar_categoria(request: Request,id_lista: int = 0):
     categoria = obter_todas_categorias()
     return templates.TemplateResponse("/itens_lista/itens_lista_categorias.html",{"request":request, "categoria":categoria, "id_lista":id_lista})
+

@@ -33,6 +33,7 @@ app.include_router(itens_lista_routes.router)
 def obter_usuario_logado():
     return Usuario("Gabriel Louzada", False)
 
+
 # roda o programa sem necessidade de abrir terminal
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)

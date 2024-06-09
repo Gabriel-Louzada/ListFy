@@ -6,8 +6,20 @@ CREATE TABLE IF NOT EXISTS "itens_lista" (
 	"valor"      	REAL NOT NULL,
 	FOREIGN KEY("id_lista") REFERENCES "lista"("id_lista"),
 	FOREIGN KEY("id_produto") REFERENCES "produto"("id_produto"),
-	PRIMARY KEY("id_lista")
+	PRIMARY KEY("id_produto")
 )'''
+
+SQL_OBTER_ITENS_LISTA_NOMES = """
+SELECT itens_lista.id_produto,
+       itens_lista.id_lista,
+       itens_lista.quantidade,
+       itens_lista.valor,
+	     produto.nome_produto
+  FROM itens_lista,
+	   produto
+ WHERE itens_lista.id_produto = produto.id_produto
+   AND itens_lista.id_lista = ?
+"""
 
 SQL_INSERT_ITENS_LISTA = '''
 INSERT INTO itens_lista(id_produto, id_lista, quantidade, valor)
