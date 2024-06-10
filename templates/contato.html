@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Contato</title>
-</head>
-<body>
-    {% include "header.html" %}
-    <main>
+{% extends "base.html" %}
+    {% block conteudo %}
+    <main class="container">
         <h2>Contato</h2>
         <form method="post">
             <p>
-                <label for="nome">Nome:</label><br>
-                <input type="text" name="nome" id="nome">
+                <label for="nome" class="form-label">Nome:</label><br>
+                <input type="text" class="form-control" name="nome" id="nome">
             </p>
             <p>
-                <label for="mensagem">Mensagem:</label><br>
-                <textarea name="mensagem" id="mensagem" rows="4" cols="80"></textarea>
+                <label for="mensagem" class="form-label">Mensagem:</label><br>
+                <textarea name="mensagem" id="mensagem" class="form-control" rows="4" cols="80"></textarea>
             </p>
             <p>
-                <button type="submit">Enviar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <a href="/" class="btn btn-danger">Voltar</a>
             </p>
         </form>
     </main>
-    {% include "footer.html" %}
-</body>
-</html>
+{% endblock %}
