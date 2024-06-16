@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 
 from models.lista import Lista
 from repo.lista import *
+from repo.promocao import *
 from repo.itens_lista import * 
 
 router = APIRouter(prefix="/lista")
@@ -56,18 +57,13 @@ async def post_delete_lista(id_lista: int = Form()):
     excluir_lista(id_lista)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
-
-################ REVER
-@router.get("/fechar_lista", response_class=HTMLResponse)
-async def get_fechar_lista(request: Request, id_lista: int = 0):
-    lista = obter_uma_lista(id_lista)
-    return templates.TemplateResponse("/listar/fecha_lista.html", {"request":request, "lista":lista})
-
 ######### REVER
 @router.post("/post_fechar_lista",response_class=RedirectResponse)
 async def post_fechar_lista(id_lista: int = Form()):
-    print(f"Estou FECHANDO a lista com ID={id_lista}")
-    fechar_lista(id_lista)
+    #primeiro fecho a lista
+    if fechar_lista(id_lista):
+        itens_lista = obter_todas_itens_lista()
+        
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/post_alterar_lista",response_class=RedirectResponse)

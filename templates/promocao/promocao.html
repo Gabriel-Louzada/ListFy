@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}Produtos - Lista{% endblock %}
+
+{% block conteudo %}
+<div class="row mt-3 container-fluid d-flex justify-content-between">
+    <div class="col-11">
+        <h2>Promoções</h2>
+        <p>Todas as promoções inseridas aqui vem das listas de outros usuarios !</p>
+    </div>
+    <div class="col-1">
+        <a href="/" class="btn btn-danger"><i class="bi bi-arrow-left-square"></i></a>
+    </div>
+</div>
+<hr>
+<div>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>id_produto</th>
+            <th>valor_promocao</th>
+            <th>Estabelecimento</th>
+        </tr>
+        
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

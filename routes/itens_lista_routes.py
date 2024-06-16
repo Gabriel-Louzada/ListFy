@@ -44,6 +44,18 @@ async def post_itens_lista(
     inserir_itens_lista(itens_lista)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
+#ROTA PARA ALTERAÇÃO DE PRODUTOS DA LISTA
+@router.post("/post_alterar_itens_lista",response_class=RedirectResponse)
+async def post_alterar_itens_lista(
+    id_lista: int = Form(),
+    id_produto: int = Form(),
+    quantidade: int = Form(),
+    valor_produto: float = Form()):
+    itens_lista = Itens_lista(id_produto,id_lista,quantidade,valor_produto)
+    print(f"estou alterando o produto {itens_lista}")
+    alterar_itens_lista(itens_lista)
+    return RedirectResponse(f"/lista/abrir/{id_lista}", status_code=status.HTTP_303_SEE_OTHER)
+
 #ROTA QUE OBTEM OS PRODUTOS DENTRO DE UMA LISTA COM SEUS RESPECTIVOS NOMES
 @router.get("/um_produto", response_class=HTMLResponse)
 async def get_um_produto(request: Request, nome_produto: str = ''):
@@ -64,9 +76,3 @@ async def post_remover_item_lista(
     excluir_itens_lista(id_lista,id_produto)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
-@router.post("/post_alterar_itens_lista",response_class=RedirectResponse)
-async def post_alterar_itens_lista(itens_lista: list[Itens_lista] = Form(...)):
-    print(f"estou alterando os produtos {itens_lista}")
-    for p in itens_lista:
-        alterar_itens_lista(p)
-    return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)

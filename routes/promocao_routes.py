@@ -8,5 +8,7 @@ from repo.promocao import *
 router = APIRouter(prefix="/promocao")
 templates = Jinja2Templates(directory = "templates")
 
-'''@router.get("/", response_class=HTMLResponse)
-async def get_listar(request: Request):'''
+@router.get("/", response_class=HTMLResponse)
+async def get_listar(request: Request):
+    promocao = obter_todas_promocao()
+    return templates.TemplateResponse("/promocao/promocao.html", {"request": request, "promocao":promocao})

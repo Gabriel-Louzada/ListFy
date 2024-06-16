@@ -17,10 +17,10 @@
         </div>
     </div>
     <hr>
-    <form id="productForm" action="/itens_lista/post_alterar_itens_lista" method="post">
-        <div class="row container-fluid d-flex justify-content-evenly">
-            {% for p in itens_lista %}
-            <div class="card col-12 mb-3" style="width: 18rem;">
+    <div class="row container-fluid d-flex justify-content-evenly">
+        {% for p in itens_lista %}
+        <div class="card col-12 mb-3" style="width: 18rem;">
+            <form id="productForm" action="/itens_lista/post_alterar_itens_lista" method="post">
                 <input type="hidden" name="id_produto" value="{{ p.id_produto }}">
                 <input type="hidden" name="id_lista" value="{{ p.id_lista }}">
                 <div>
@@ -31,37 +31,38 @@
                     <div>
                         <label for="valor_produto_{{ p.id_produto }}">Valor R$:</label>
                         <input style="text-align: center;" type="text" class="form-control"
-                            id="valor_produto_{{ p.id_produto }}" name="valor_produto"
-                            value="{{ p.valor_produto }}">
+                            id="valor_produto_{{ p.id_produto }}" name="valor_produto" value="{{ p.valor_produto }}">
                     </div>
                     <div>
                         <label for="quantidade_{{ p.id_produto }}" class="m-3">Quantidade:</label>
                         <input style="text-align: center;" type="text" class="form-control mb-3"
-                            id="quantidade_{{ p.id_produto }}" name="quantidade"
-                            value="{{ p.quantidade }}">
+                            id="quantidade_{{ p.id_produto }}" name="quantidade" value="{{ p.quantidade }}">
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 d-flex justify-content-between">
                         <input type="checkbox" class="btn-check" id="checkbox_{{ p.id_produto }}"
                             name="checkbox_{{ p.id_produto }}" autocomplete="off" value="{{ p.id_produto }}"
                             onclick="calculateTotal()">
                         <label class="btn btn-outline-primary" for="checkbox_{{ p.id_produto }}">Check</label>
+                        <button class="btn btn-success" type="submit">Corrigir Valor</button>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+            </form>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 id="total_quantidade">Total Produtos: 0</h3>
-                <h3 id="total_valor">Total Valor: R$ 0.00</h3>
-            </div>
-            <div class="col-12 d-flex justify-content-end">
-                <a href="/itens_lista/categorias/{{ lista.id_lista }}" class="btn btn-primary"><i
-                        class="bi bi-bag-plus"></i></a>
-                <button class="btn btn-success mx-3" type="submit"><i class="bi bi-cart-check"></i></button>
-            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3 id="total_quantidade">Total Produtos: 0</h3>
+            <h3 id="total_valor">Total Valor: R$ 0.00</h3>
         </div>
-    </form>
+        <div class="col-12 d-flex justify-content-end">
+            <a href="/itens_lista/categorias/{{ lista.id_lista }}" class="btn btn-primary mx-3"><i class="bi bi-bag-plus"></i></a>
+            <form action="/lista/post_fechar_lista" method="post">
+                <input type="hidden" name="id_lista" value="{{ lista.id_lista }}">
+                <button type="submit" class="btn btn-success"><i class="bi bi-cart-check"></i></button>
+            </form>
+        </div>
+    </div>
 </main>
 
 <script>
