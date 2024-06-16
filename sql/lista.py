@@ -16,7 +16,13 @@ VALUES(?,?,?)
 #NESSE UPDATE ESTOU ATRIBUINDO QUE NAO FAZ SENTIDO ALTERAR O ID DO USUARIO DE DENTRO DA LISTA 
 SQL_ALTERAR_LISTA = '''
 UPDATE lista
-   SET estabelecimento=? 
+   SET estabelecimento=?, status_lista=?
+ WHERE id_lista=?
+'''
+
+SQL_FECHAR_LISTA = '''
+UPDATE lista
+   SET status_lista=0
  WHERE id_lista=?
 '''
 
@@ -33,10 +39,11 @@ SELECT id_lista, estabelecimento,id_user, status_lista
 '''
 
 #Nao irei permitir a exclusao de uma lista que ja esta fechada
+#status = 1
 SQL_EXCLUIR_LISTA = '''
 DELETE FROM lista
  WHERE id_lista=?
-   AND status_lista <> 0
+   AND status_lista = 1
 '''
 
 SQL_QUANTIDADE_LISTAS = """

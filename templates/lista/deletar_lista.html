@@ -4,8 +4,8 @@
 
 {% block conteudo %}
     <main class="container-fluid">
-        <h2>Alteração de Lista</h2>
-        <form method="post" action="/lista/post_alterar_lista">
+        <h2>Excluisão da Lista :: {{lista.estabelecimento}}</h2>
+        <form method="post" action="/lista/post_excluir_lista">
             <div>
                 <input type="hidden" name="id_lista" id="id_lista" value="{{lista.id_lista}}">
                 <label for="estabelecimento">Estabelecimento:</label><br>
@@ -17,12 +17,16 @@
             </div>
             <div class="col-md-12">
                 <label for="status_lista" class="form-label">Status</label>
-               <select class="form-select" id="status_lista" name="status_lista" required>
-                  <option value="1" >Aberto</option>
-                  <option value="0" >Fechado</option>
+                <select class="form-select" id="status_lista" name="status_lista" required>
+                  {% if lista.status_lista == 1 %}
+                  <option value="{{lista.status_lista}}" >Aberto</option>
+                  {% else %}
+                  <option value="{{lista.status_lista}}" >Fechado</option>
+                  {% endif %}
                 </select>
             <div class="mt-3">
-                <button class="btn btn-primary" type="submit">Salvar</button>
+                <p><b>Só é permitido deletar listas em que o status esteja Aberto!</b></p>
+                <button class="btn btn-primary" type="submit">Excluir</button>
                 <a href="/lista" class="btn btn-danger">Voltar</a>
             </div>
         </form>

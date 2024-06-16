@@ -31,7 +31,6 @@ def obter_itens_lista_nomes(id_lista:int) -> list[Itens_lista]:
         print(f"Função obter_todas_itens_lista não esta funcionando corretamente {e}")
         return None 
 
-    
 def inserir_itens_lista(itens_lista: Itens_lista):
     try:
         with criar_conexao() as conexao:
@@ -51,15 +50,17 @@ def alterar_itens_lista(itens_lista: Itens_lista):
             cursor = conexao.cursor()
             cursor.execute(SQL_ALTERAR_ITENS_LISTA,(
                 itens_lista.quantidade,
+                itens_lista.valor_produto,
+                itens_lista.id_produto,
                 itens_lista.id_lista ))
     except sqlite3.Error as e:
         print(f"Função alterar_itens_lista não esta funcionando corretamente {e}")
 
-def excluir_itens_lista(id_produto: int):
+def excluir_itens_lista(id_lista: int,id_produto: int):
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            cursor.execute(SQL_EXCLUIR_ITENS_LISTA, (id_produto, ))
+            cursor.execute(SQL_EXCLUIR_ITENS_LISTA, (id_lista,id_produto))
     except sqlite3.Error as e:
         print(f"Função excluir_itens_lista não esta funcionando corretamente {e}")
 

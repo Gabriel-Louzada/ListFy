@@ -4,16 +4,25 @@
 
 {% block conteudo %}
 <main class="container-fluid">
-    <div class="d-flex justify-content-between mt-3">
-        <h2>Lista - {{ lista.estabelecimento }}</h2>
-        <a href="/produto/cadastrar_produto" class="btn btn-primary">Cadastrar Produto</a>
+    <div class="row mt-3 d-flex justify-content-between">
+        <div class=" col-8 col-sm-10">
+            <h2>Lista - {{ lista.estabelecimento }}</h2>
+        </div>
+        <div class="col-2 col-sm-1 ">
+            <a href="/lista/remover_itens_lista/{{lista.id_lista}}" class="btn btn-danger"><i
+                    class="bi bi-trash3"></i></a>
+        </div>
+        <div class="col-2 col-sm-1">
+            <a href="/lista" class="btn btn-danger"><i class="bi bi-arrow-left-square"></i></a>
+        </div>
     </div>
     <hr>
-    <form id="productForm" action="/itens_lista/post_itens_lista/{{ lista.id_lista }}" method="post">
+    <form id="productForm" action="/itens_lista/post_alterar_itens_lista" method="post">
         <div class="row container-fluid d-flex justify-content-evenly">
             {% for p in itens_lista %}
             <div class="card col-12 mb-3" style="width: 18rem;">
-                <input type="hidden" name="id_produto_{{ p.id_produto }}" value="{{ p.id_produto }}">
+                <input type="hidden" name="id_produto" value="{{ p.id_produto }}">
+                <input type="hidden" name="id_lista" value="{{ p.id_lista }}">
                 <div>
                     <h3 class="mt-3">{{ p.nome_produto }}</h3>
                 </div>
@@ -21,17 +30,20 @@
                     <h5>Código: {{ p.id_produto }}</h5>
                     <div>
                         <label for="valor_produto_{{ p.id_produto }}">Valor R$:</label>
-                        <input style="text-align: center;" type="text" class="form-control" id="valor_produto_{{ p.id_produto }}"
-                            name="valor_produto_{{ p.id_produto }}" value="{{ p.valor_produto }}">
+                        <input style="text-align: center;" type="text" class="form-control"
+                            id="valor_produto_{{ p.id_produto }}" name="valor_produto"
+                            value="{{ p.valor_produto }}">
                     </div>
                     <div>
                         <label for="quantidade_{{ p.id_produto }}" class="m-3">Quantidade:</label>
-                        <input style="text-align: center;" type="text" class="form-control mb-3" id="quantidade_{{ p.id_produto }}"
-                            name="quantidade_{{ p.id_produto }}" value="{{ p.quantidade }}">
+                        <input style="text-align: center;" type="text" class="form-control mb-3"
+                            id="quantidade_{{ p.id_produto }}" name="quantidade"
+                            value="{{ p.quantidade }}">
                     </div>
                     <div class="col-12">
-                        <input type="checkbox" class="btn-check" id="checkbox_{{ p.id_produto }}" name="checkbox_{{ p.id_produto }}"
-                            autocomplete="off" value="{{ p.id_produto }}" onclick="calculateTotal()">
+                        <input type="checkbox" class="btn-check" id="checkbox_{{ p.id_produto }}"
+                            name="checkbox_{{ p.id_produto }}" autocomplete="off" value="{{ p.id_produto }}"
+                            onclick="calculateTotal()">
                         <label class="btn btn-outline-primary" for="checkbox_{{ p.id_produto }}">Check</label>
                     </div>
                 </div>
@@ -44,8 +56,9 @@
                 <h3 id="total_valor">Total Valor: R$ 0.00</h3>
             </div>
             <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-primary mx-3" type="submit">ADD a lista</button>
-                <a href="/lista" class="btn btn-danger">Voltar</a>
+                <a href="/itens_lista/categorias/{{ lista.id_lista }}" class="btn btn-primary"><i
+                        class="bi bi-bag-plus"></i></a>
+                <button class="btn btn-success mx-3" type="submit"><i class="bi bi-cart-check"></i></button>
             </div>
         </div>
     </form>
@@ -57,12 +70,12 @@
         var totalQuantidade = 0;
         var totalValor = 0;
 
-        checkboxes.forEach(function(checkbox) {
+        checkboxes.forEach(function (checkbox) {
             if (checkbox.checked) {
                 var id = checkbox.value;
                 var valor = parseFloat(document.getElementById('valor_produto_' + id).value);
                 var quantidade = parseInt(document.getElementById('quantidade_' + id).value);
-                
+
                 totalValor += valor * quantidade;
                 totalQuantidade += quantidade;
             }
@@ -72,7 +85,7 @@
         document.getElementById('total_valor').innerText = 'Total Valor: R$ ' + totalValor.toFixed(2);
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         calculateTotal();
     });
 </script>

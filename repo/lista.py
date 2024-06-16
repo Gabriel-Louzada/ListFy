@@ -33,25 +33,35 @@ def inserir_lista(lista: Lista):
     except sqlite3.Error as e:
         print(e)
 
-def alterar_LISTA(lista: Lista):
+def alterar_lista(lista: Lista):
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
             cursor.execute(SQL_ALTERAR_LISTA,(
                 lista.estabelecimento,
-                lista.id_user,
-                lista.status_lista
+                lista.status_lista,
+                lista.id_lista
             ))
     except sqlite3.Error as e:
-        print(e)
+        print(f"Erro na função alterar_lista {e}")
+
+def fechar_lista(lista: Lista):
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            cursor.execute(SQL_ALTERAR_LISTA,(lista.id_lista,))
+    except sqlite3.Error as e:
+        print(f"Erro na função fechar_lista {e}")
+
+#Deleto a lista se o status for aberto ou seja = 1
 
 def excluir_lista(id_lista: int):
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            cursor.execute(SQL_EXCLUIR_LISTA, (id_lista, ))
+            cursor.execute(SQL_EXCLUIR_LISTA, (id_lista,))
     except sqlite3.Error as e:
-        print(e)
+        print(f"Função excluir_lista nao esta funcionando corretamente {e}")
 
 def obter_uma_lista(id_lista: int) -> Lista:
     try:

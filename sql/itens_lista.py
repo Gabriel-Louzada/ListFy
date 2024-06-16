@@ -1,13 +1,13 @@
 SQL_CREATE_ITENS_LISTA = '''
 CREATE TABLE IF NOT EXISTS "itens_lista" (
-	"id_produto"	INTEGER NOT NULL,
-	"id_lista"	    INTEGER,
-	"quantidade"	REAL NOT NULL,
-	"valor"      	REAL NOT NULL,
-	FOREIGN KEY("id_lista") REFERENCES "lista"("id_lista"),
+	"id_itens_lista"	INTEGER,
+	"id_produto"	    INTEGER NOT NULL,
+	"id_lista"	      INTEGER NOT NULL,
+	"quantidade"	    REAL NOT NULL,
+	"valor"	          REAL NOT NULL,
 	FOREIGN KEY("id_produto") REFERENCES "produto"("id_produto"),
-	PRIMARY KEY("id_produto")
-)'''
+	FOREIGN KEY("id_lista") REFERENCES "lista"("id_lista"),
+	PRIMARY KEY("id_itens_lista" AUTOINCREMENT))'''
 
 SQL_OBTER_ITENS_LISTA_NOMES = """
 SELECT itens_lista.id_produto,
@@ -29,7 +29,7 @@ VALUES (?,?,?,?)
 #MEU USUARIO NAO TERA A PERMISSAO DE TIRAR UM PRODUTO DE UMA LISTA E ACRESCENTAR EM OUTRA COM. POR ISSO O ID_LISTA NAO ESTA NO SET
 SQL_ALTERAR_ITENS_LISTA = '''
 UPDATE itens_lista
-   SET id_produto=?, quantidade=?, valor=?
+   SET quantidade=?, valor=?
  WHERE id_produto=?
    AND id_lista=?
 '''
