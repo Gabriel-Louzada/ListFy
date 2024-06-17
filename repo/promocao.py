@@ -1,4 +1,5 @@
 import sqlite3
+from models.itens_lista import Itens_lista
 from models.promocao import Promocao
 from sql.promocao import *
 from util import criar_conexao
@@ -62,3 +63,18 @@ def obter_uma_promocao(id_promocao: int) -> Promocao:
     except sqlite3.Error as e:
         print(f"Função alterar_promocao não esta funcionando corretamente {e}")
         return None
+    
+def criar_promocao():
+    try:
+         with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tuplas = cursor.execute(SQL_CRIAR_PROMOCAO).fetchall()
+            if tuplas:
+                promocao = [Promocao(None, *t[1:]) for t in tuplas]
+                for p in promocao:
+                    inserir_promocao(p)
+                print("FEITO")
+            else:
+                print("erro na função criar_promocao")
+    except sqlite3.Error as e:
+        print(f"Função criar_promocao nao esta Funcionando corretamente {e}")

@@ -57,13 +57,10 @@ async def post_delete_lista(id_lista: int = Form()):
     excluir_lista(id_lista)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
-######### REVER
 @router.post("/post_fechar_lista",response_class=RedirectResponse)
 async def post_fechar_lista(id_lista: int = Form()):
-    #primeiro fecho a lista
-    if fechar_lista(id_lista):
-        itens_lista = obter_todas_itens_lista()
-        
+    fechar_lista(id_lista) 
+    criar_promocao()       
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/post_alterar_lista",response_class=RedirectResponse)

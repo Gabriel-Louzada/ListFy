@@ -8,3 +8,4 @@ class Promocao():
     id_produto: Optional[int] = None
     valor_promocao: Optional[float] = None
     estabelecimento: Optional[str] = None
+    nome_produto: Optional[str] = None

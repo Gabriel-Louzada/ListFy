@@ -11,6 +11,7 @@ from repo.promocao import criar_tabela_promocao
 from repo.usuario import *
 from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes,promocao_routes
 
+
 criar_tabela_usuario()
 criar_tabela_produto()
 criar_tabela_categoria()
