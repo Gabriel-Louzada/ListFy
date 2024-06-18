@@ -1,7 +1,7 @@
 import sqlite3
 from models.usuario import Usuario
 from sql.usuario import *
-from util import criar_conexao
+from util.util import criar_conexao
 
 def criar_tabela_usuario():
     try:
@@ -53,12 +53,15 @@ def excluir_usuario(id_usuario: int):
     except sqlite3.Error as e:
         print(e)
 
-def obter_um_usuario(id_usuario: int) -> Usuario:
+def obter_um_usuario(senha: str, email:str) -> Usuario:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_UM_USUARIO, (id_usuario,)).fetchone()
+            tupla = cursor.execute(SQL_OBTER_UM_USUARIO, (senha,email)).fetchone()
             return Usuario(*tupla)
     except sqlite3.Error as e:
         print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
         return None
+    
+def obter_usuario_logado():
+    pass

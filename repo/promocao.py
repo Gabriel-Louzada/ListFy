@@ -1,7 +1,7 @@
 import sqlite3
 from models.promocao import Promocao
 from sql.promocao import *
-from util import criar_conexao
+from util.util import criar_conexao
 
 def criar_tabela_promocao():
     try:

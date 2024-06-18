@@ -1,7 +1,7 @@
 import sqlite3
 from models.produto import Produto
 from sql.produto import *
-from util import criar_conexao
+from util.util import criar_conexao
 
 def criar_tabela_produto():
     try:

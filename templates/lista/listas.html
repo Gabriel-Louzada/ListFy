@@ -4,9 +4,14 @@
 
 {% block conteudo %}
     <main class="container-fluid">
-        <div class="d-flex justify-content-between mt-3">
-            <h2>Lista</h2>
-            <a href="/lista/cadastrar_lista" class="btn btn-primary"> Cadastrar Lista</a>
+        <div class="row d-flex justify-content-between mt-3 ">
+            <div class="col-6 col-xl-9 col-md-8">
+                <h2>Lista</h2>
+            </div>
+            <div class="col-6 col-xl-3 col-md-4 justify-content-between">
+                <a href="/lista/cadastrar_lista" class="btn btn-primary"> Cadastrar Lista</a>
+                <a href="/" class="btn btn-danger"> <i class="bi bi-arrow-left-square"></i></a>
+            </div>
         </div>
         <table class="table">
             <hr>
@@ -25,10 +30,5 @@
             </tr>
             {% endfor %}
         </table>
-        <div class="row">
-            <div class="col-12 mb-5 d-flex justify-content-end">
-                <a href="/" class="btn btn-danger"> Voltar</a>
-            </div>
-        </div>
     </main>
 {% endblock %}

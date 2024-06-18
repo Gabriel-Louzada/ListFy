@@ -1,7 +1,7 @@
 import sqlite3
 from models.categoria import Categoria
 from sql.categoria import *
-from util import criar_conexao
+from util.util import criar_conexao
 
 def criar_tabela_categoria():
     try:

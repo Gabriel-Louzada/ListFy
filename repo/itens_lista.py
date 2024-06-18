@@ -1,7 +1,7 @@
 import sqlite3
 from models.itens_lista import Itens_lista
 from sql.itens_lista import *
-from util import criar_conexao
+from util.util import criar_conexao
 
 def criar_tabela_itens_lista():
     try:

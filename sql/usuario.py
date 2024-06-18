@@ -27,7 +27,8 @@ SELECT id_usuario, email, nome, senha
 SQL_OBTER_UM_USUARIO = '''
 SELECT id_usuario, email, nome, senha
   FROM usuario
- WHERE id_usuario=?
+ WHERE senha=?
+   AND email=?
 '''
 
 SQL_EXCLUIR_USUARIO = '''
