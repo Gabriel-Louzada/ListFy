@@ -52,7 +52,6 @@ async def post_alterar_itens_lista(
     quantidade: int = Form(),
     valor_produto: float = Form()):
     itens_lista = Itens_lista(id_produto,id_lista,quantidade,valor_produto)
-    print(f"estou alterando o produto {itens_lista}")
     alterar_itens_lista(itens_lista)
     return RedirectResponse(f"/lista/abrir/{id_lista}", status_code=status.HTTP_303_SEE_OTHER)
 
@@ -61,8 +60,8 @@ async def post_alterar_itens_lista(
 async def get_um_produto(request: Request, nome_produto: str = ''):
     produtos = obter_um_produto_nome(nome_produto)
     return templates.TemplateResponse("/itens_lista/um_produto.html", {"request": request, "produtos": produtos})
-#A FUNCAO QUE OBTEM OS PRODUTOS COM NOME. FAZ UM JOIN NA TABELA PRODUTO PARA PEGAR O NOME 
 
+#A FUNCAO QUE OBTEM OS PRODUTOS COM NOME. FAZ UM JOIN NA TABELA PRODUTO PARA PEGAR O NOME 
 @router.get("/categorias/{id_lista:int}", response_class=HTMLResponse)
 async def get_listar_categoria(request: Request,id_lista: int = 0):
     categoria = obter_todas_categorias()

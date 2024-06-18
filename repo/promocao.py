@@ -1,5 +1,4 @@
 import sqlite3
-from models.itens_lista import Itens_lista
 from models.promocao import Promocao
 from sql.promocao import *
 from util import criar_conexao
@@ -16,7 +15,7 @@ def obter_todas_promocao() -> list[Promocao]:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tuplas = cursor.execute(SQL_OBTER_TODOS_PROMOCAO).fetchall()
+            tuplas = cursor.execute(SQL_OBTER_TODAS_PROMOCOES).fetchall()
             return [Promocao(*t) for t in tuplas]
     except sqlite3.Error as e:
         print(f"Função obter_todas_promocao não esta funcionando corretamente {e}")
@@ -27,10 +26,9 @@ def inserir_promocao(promocao: Promocao):
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
             cursor.execute(SQL_INSERT_PROMOCAO,(
-                promocao.id_promocao,
                 promocao.id_produto,
                 promocao.valor_promocao,
-                promocao.estabelecimento
+                promocao.id_lista
             ))
     except sqlite3.Error as e:
         print(f"Função inserir_promocao não esta funcionando corretamente {e}")
@@ -64,16 +62,15 @@ def obter_uma_promocao(id_promocao: int) -> Promocao:
         print(f"Função alterar_promocao não esta funcionando corretamente {e}")
         return None
     
-def criar_promocao():
+def criar_promocao(id_lista: int):
     try:
          with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tuplas = cursor.execute(SQL_CRIAR_PROMOCAO).fetchall()
+            tuplas = cursor.execute(SQL_CRIAR_PROMOCAO,(id_lista,)).fetchall()
             if tuplas:
-                promocao = [Promocao(None, *t[1:]) for t in tuplas]
+                promocao = [Promocao(*t) for t in tuplas]
                 for p in promocao:
                     inserir_promocao(p)
-                print("FEITO")
             else:
                 print("erro na função criar_promocao")
     except sqlite3.Error as e:

@@ -59,8 +59,8 @@ async def post_delete_lista(id_lista: int = Form()):
 
 @router.post("/post_fechar_lista",response_class=RedirectResponse)
 async def post_fechar_lista(id_lista: int = Form()):
-    fechar_lista(id_lista) 
-    criar_promocao()       
+    fechar_lista(id_lista)
+    criar_promocao(id_lista)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/post_alterar_lista",response_class=RedirectResponse)

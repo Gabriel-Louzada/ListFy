@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
 
-#####REVER
 @dataclass
 class Itens_lista():
     id_produto: Optional[int] = None

@@ -9,15 +9,6 @@
             <a href="/lista/cadastrar_lista" class="btn btn-primary"> Cadastrar Lista</a>
         </div>
         <table class="table">
-            <!-- <tr>
-                <th>#</th>
-                <th>Estabelecimento</th>
-                <th>Status</th>
-                <th>Abrir</th>
-                <th>Alterar</th>
-                <th>Adicionar</th>
-                <th>Excluir</th>
-            </tr> -->
             <hr>
             {% for l in listas %}
             <tr>
@@ -28,10 +19,9 @@
                 {% else %}
                     <td> Fechado </td>
                 {% endif %}
-                <td><a href="/lista/abrir/{{ l.id_lista }}"class="btn btn-primary"><i class="bi bi-basket"></i></a></td>
-                <td><a href="/lista/alterar_lista/{{l.id_lista}}"class="btn btn-secondary"><i class="bi bi-pencil"></i></a></td>
-                <td><a href="/itens_lista/categorias/{{ l.id_lista }}"class="btn btn-success"><i class="bi bi-bag-plus"></i></a></td>
-                <td><a href="/lista/excluir/{{ l.id_lista }}"class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                <td><a href="/lista/abrir/{{ l.id_lista }}"class="btn btn-primary p-0 p-sm-1"><i class="bi bi-basket"></i></a></td>
+                <td><a href="/lista/alterar_lista/{{l.id_lista}}"class="btn btn-secondary p-0 p-sm-1"><i class="bi bi-pencil"></i></a></td>
+                <td><a href="/lista/excluir/{{ l.id_lista }}"class="btn btn-danger p-0 p-sm-1"><i class="bi bi-trash"></i></a>
             </tr>
             {% endfor %}
         </table>

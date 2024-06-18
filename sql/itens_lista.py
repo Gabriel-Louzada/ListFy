@@ -40,6 +40,12 @@ SELECT id_produto, id_lista, quantidade, valor
 ORDER BY id_produto
 '''
 
+SQL_OBTER_TODOS_ITENS_LISTA_NOME = '''
+SELECT id_produto, id_lista, quantidade, valor
+  FROM itens_lista
+ORDER BY id_produto
+'''
+
 SQL_OBTER_UM_ITENS_LISTA = '''
 SELECT id_produto, id_lista, quantidade, valor
   FROM itens_lista
