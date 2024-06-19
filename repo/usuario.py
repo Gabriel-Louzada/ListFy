@@ -70,7 +70,7 @@ def obter_um_usuario(id:int) -> Usuario:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_POR_ID, (id)).fetchone()
+            tupla = cursor.execute(SQL_OBTER_POR_ID, (id,)).fetchone()
             return Usuario(*tupla)
     except sqlite3.Error as e:
         print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
@@ -80,20 +80,20 @@ def obter_por_email(email:str) -> Usuario:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_POR_EMAIL, (email)).fetchone()
+            tupla = cursor.execute(SQL_OBTER_POR_EMAIL, (email,)).fetchone()
             return Usuario(*tupla)
     except sqlite3.Error as e:
-        print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
+        print(f"Função obter_por_email nao esta funcionando corretamente {e}")
         return None
 
 def obter_por_token(token:str) -> Usuario:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_POR_TOKEN, (token)).fetchone()
+            tupla = cursor.execute(SQL_OBTER_POR_TOKEN, (token,)).fetchone()
             return Usuario(*tupla)
     except sqlite3.Error as e:
-        print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
+        print(f"Função obter_por_token nao esta funcionando corretamente {e}")
         return None
 
 def obter_usuario_logado():

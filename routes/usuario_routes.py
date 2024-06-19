@@ -20,17 +20,17 @@ async def get_cadastrar(request: Request):
     return templates.TemplateResponse("/usuario/cadastrar_usuario.html",{"request":request})
 
 @router.post("/post_entrar",response_model_include=RedirectResponse)
-async def post_entrar_usuario( email: str = Form(),senha: str = Form()):
-    usuario = usuario_repo.obter_por_email(email)
+async def post_entrar_usuario(email: str = Form(),senha: str = Form()):
+    usuario = obter_por_email(email)
     print(usuario)
     if not conferir_senha(senha, usuario.senha):
-        response = RedirectResponse("/entrar", status_code=status.HTTP_302_FOUND)
+        response = RedirectResponse("/usuario/entrar", status_code=status.HTTP_302_FOUND)
         adicionar_cookie_mensagem(response, "Credenciais inválidas. Tente novamente.")
         return response
     
     token = gerar_token()
-    usuario_repo.alterar_token(usuario.id_usuario, token)
-    response = RedirectResponse("/lista", status_code=status.HTTP_302_FOUND)
+    alterar_token(usuario.id_usuario, token)
+    response = RedirectResponse("/usuario/lista", status_code=status.HTTP_302_FOUND)
     adicionar_cookie_mensagem(response, f"Seja Bem vindo(a) a ListFy <b>{usuario.nome}</b>")
     adicionar_cookie_autenticacao(response, token)
     return response

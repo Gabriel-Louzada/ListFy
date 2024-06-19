@@ -36,8 +36,6 @@ app.include_router(usuario_routes.router)
 app.include_router(itens_lista_routes.router)
 app.include_router(promocao_routes.router)
 
-def obter_usuario_logado():
-    return Usuario("Gabriel Louzada", False)
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)
