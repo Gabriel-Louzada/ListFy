@@ -9,3 +9,4 @@ class Usuario():
     nome: Optional[str] = None
     email: Optional[str] = None
     senha: Optional[str] = None
+    token: Optional[str] = None

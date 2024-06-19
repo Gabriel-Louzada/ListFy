@@ -10,6 +10,7 @@ from repo.produto import *
 from repo.promocao import criar_tabela_promocao
 from repo.usuario import *
 from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes,promocao_routes
+from util.auth import middleware_autenticacao
 
 
 criar_tabela_usuario()
@@ -25,6 +26,7 @@ templates = Jinja2Templates(directory = "templates")
 
 
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
+app.middleware(middleware_type="http")(middleware_autenticacao)
 
 app.include_router(produto_routes.router)
 app.include_router(categoria_routes.router)

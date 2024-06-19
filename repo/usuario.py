@@ -1,4 +1,5 @@
 import sqlite3
+from typing import Optional
 from models.usuario import Usuario
 from sql.usuario import *
 from util.util import criar_conexao
@@ -21,7 +22,15 @@ def obter_todos_usuarios() -> list[Usuario]:
         print(f"Função obter_todos_usuarios nao esta funcionando corretamente {e}")
         return None 
 
-def inserir_usuario(usuario: Usuario):
+def alterar_token(id: int, token: str):
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            cursor.execute(SQL_ALTERAR_TOKEN, (token, id))
+    except sqlite3.DatabaseError as e:
+        print(e)
+
+def inserir_usuario(usuario: Usuario) -> Optional[Usuario]:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
@@ -30,8 +39,12 @@ def inserir_usuario(usuario: Usuario):
                 usuario.nome,
                 usuario.senha
             ))
+            if cursor.rowcount > 0:
+                usuario.id_usuario = cursor.lastrowid
+                return usuario
     except sqlite3.Error as e:
         print(e)
+        return None
 
 def alterar_usuario(usuario: Usuario):
     try:
@@ -53,15 +66,35 @@ def excluir_usuario(id_usuario: int):
     except sqlite3.Error as e:
         print(e)
 
-def obter_um_usuario(senha: str, email:str) -> Usuario:
+def obter_um_usuario(id:int) -> Usuario:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_UM_USUARIO, (senha,email)).fetchone()
+            tupla = cursor.execute(SQL_OBTER_POR_ID, (id)).fetchone()
             return Usuario(*tupla)
     except sqlite3.Error as e:
         print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
         return None
     
+def obter_por_email(email:str) -> Usuario:
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tupla = cursor.execute(SQL_OBTER_POR_EMAIL, (email)).fetchone()
+            return Usuario(*tupla)
+    except sqlite3.Error as e:
+        print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
+        return None
+
+def obter_por_token(token:str) -> Usuario:
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tupla = cursor.execute(SQL_OBTER_POR_TOKEN, (token)).fetchone()
+            return Usuario(*tupla)
+    except sqlite3.Error as e:
+        print(f"Função obter_um_usuario nao esta funcionando corretamente {e}")
+        return None
+
 def obter_usuario_logado():
     pass
