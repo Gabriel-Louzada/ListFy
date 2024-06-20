@@ -12,7 +12,6 @@ from repo.usuario import *
 from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes,promocao_routes
 from util.auth import middleware_autenticacao
 
-
 criar_tabela_usuario()
 criar_tabela_produto()
 criar_tabela_categoria()
@@ -24,7 +23,6 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory = "templates")
 
-
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 app.middleware(middleware_type="http")(middleware_autenticacao)
 
@@ -35,7 +33,6 @@ app.include_router(main_router.router)
 app.include_router(usuario_routes.router)
 app.include_router(itens_lista_routes.router)
 app.include_router(promocao_routes.router)
-
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)

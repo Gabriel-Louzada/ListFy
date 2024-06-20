@@ -16,7 +16,7 @@ VALUES(?,?,?)
 SQL_ALTERAR_TOKEN = """
     UPDATE usuario
     SET token=?
-    WHERE id=?
+    WHERE id_usuario=?
 """
 
 SQL_ALTERAR_USUARIO = '''

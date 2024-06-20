@@ -3,18 +3,20 @@ from typing import Optional
 import bcrypt
 from fastapi import HTTPException, Request, status
 from models.usuario import Usuario
+from repo.usuario import obter_por_token
 
-import repo.usuario as usuario_repo
 
 NOME_COOKIE_AUTH = "token"
 
 
 async def obter_usuario_logado(request: Request) -> Optional[Usuario]:
     try:
+        print("To aqui! obter usuario logado")
         token = request.cookies[NOME_COOKIE_AUTH]
         if token.strip() == "":
             return None
-        usuario = usuario_repo.obter_por_token(token)
+        usuario = obter_por_token(token)
+        print(usuario)
         return usuario
     except KeyError:
         return None

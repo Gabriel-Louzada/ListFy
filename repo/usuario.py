@@ -22,11 +22,11 @@ def obter_todos_usuarios() -> list[Usuario]:
         print(f"Função obter_todos_usuarios nao esta funcionando corretamente {e}")
         return None 
 
-def alterar_token(id: int, token: str):
+def alterar_token(id_usuario: int, token: str):
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            cursor.execute(SQL_ALTERAR_TOKEN, (token, id))
+            cursor.execute(SQL_ALTERAR_TOKEN, (token, id_usuario))
     except sqlite3.DatabaseError as e:
         print(e)
 
