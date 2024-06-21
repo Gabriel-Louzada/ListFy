@@ -21,6 +21,16 @@ def obter_todos_lista() -> list[Lista]:
         print(f"Função obter_todos_lista nao esta funcionando corretamente {e}")
         return None 
     
+def obter_todos_lista_usuario(id: int) -> list[Lista]:
+    try:
+        with criar_conexao() as conexao:
+            cursor = conexao.cursor()
+            tupla = cursor.execute(SQL_OBTER_TODOS_LISTA_USUARIO, (id,)).fetchall()
+            return [Lista(*t) for t in tupla]
+    except sqlite3.Error as e:
+        print(f"Função obter_todos_lista nao esta funcionando corretamente {e}")
+        return None 
+    
 def inserir_lista(lista: Lista):
     try:
         with criar_conexao() as conexao:

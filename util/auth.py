@@ -15,7 +15,6 @@ async def obter_usuario_logado(request: Request) -> Optional[Usuario]:
         if token.strip() == "":
             return None
         usuario = obter_por_token(token)
-        print(usuario)
         return usuario
     except KeyError:
         return None

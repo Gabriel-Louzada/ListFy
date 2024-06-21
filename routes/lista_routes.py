@@ -13,7 +13,8 @@ templates = Jinja2Templates(directory = "templates")
 
 @router.get("/", response_class=HTMLResponse)
 async def get_listas(request: Request):
-    listas = obter_todos_lista()
+    usuario =  request.state.usuario
+    listas = obter_todos_lista_usuario(usuario.id_usuario)
     return templates.TemplateResponse("/lista/listas.html", {"request": request, "listas": listas})
 
 @router.get("/cadastrar_lista",response_class=HTMLResponse)

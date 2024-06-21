@@ -32,6 +32,13 @@ SELECT id_lista, estabelecimento,id_user, status_lista
  ORDER BY estabelecimento
 '''
 
+SQL_OBTER_TODOS_LISTA_USUARIO = '''
+SELECT id_lista, estabelecimento,id_user, status_lista 
+  FROM lista
+ WHERE id_user=?
+ ORDER BY estabelecimento
+'''
+
 SQL_OBTER_UM_LISTA = '''
 SELECT id_lista, estabelecimento,id_user, status_lista 
   FROM lista

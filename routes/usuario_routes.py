@@ -7,7 +7,6 @@ from repo.usuario import *
 from util.auth import *
 from util.cookies import adicionar_cookie_mensagem
 
-
 router = APIRouter(prefix="/usuario")
 templates = Jinja2Templates(directory = "templates")
 

@@ -67,7 +67,6 @@ async def get_listar_categoria(request: Request,id_lista: int = 0):
     categoria = obter_todas_categorias()
     return templates.TemplateResponse("/itens_lista/itens_lista_categorias.html",{"request":request, "categoria":categoria, "id_lista":id_lista})
 
-
 @router.post("/post_remover_item_lista",response_class=RedirectResponse)
 async def post_remover_item_lista(
     id_lista: int = Form(),
