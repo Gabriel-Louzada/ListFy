@@ -9,6 +9,14 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {%- if not usuario: -%}
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/usuario/entrar">Usuario</a>
+              </li>
+              {%- else: -%}
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/usuario/sair"><i class="bi bi-person-circle" style="padding: 0px;">{{usuario.nome}}</i></a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Cadastros
@@ -18,18 +26,14 @@
                   <li><a class="dropdown-item" href="/lista">Listas</a></li>
                   <li><a class="dropdown-item" href="/categorias">Categorias</a></li>
                 </ul>
+                {%- endif -%}
               </li>
               <li class="nav-item">
                 <a class="nav-link text-light" href="/promocao">Promoções</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Configurações
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="/usuario/entrar">Usuario</a></li>
-                  <li><a class="dropdown-item" href="/contato">Contato</a></li>
-                </ul>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/contato">Contato</a>
+              </li>
             </ul>
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">

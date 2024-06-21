@@ -11,6 +11,14 @@ from util.cookies import adicionar_cookie_mensagem
 router = APIRouter(prefix="/usuario")
 templates = Jinja2Templates(directory = "templates")
 
+@router.get("/sair")
+def get_sair(request: Request):
+    checar_autorizacao(request)
+    response = RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    excluir_cookie_autenticacao(response)
+    return response
+
+
 @router.get("/entrar",response_class=HTMLResponse)
 async def get_entrar(request: Request):
     return templates.TemplateResponse("/usuario/login.html",{"request":request})
@@ -50,7 +58,7 @@ async def post_cad_usuario(
     #transformo a senha em uma criptografada (hash)
     senha_hash = obter_hash_senha(senha)
     #crio um objeto usuario
-    usuario = Usuario(0, nome, email, senha_hash, "")
+    usuario = Usuario(0, email, nome, senha_hash, "")
 
     #para esta parte funcionar é necessario que o usuario retorne algo, nesse caso ele me retorna o usuario ou None
     if inserir_usuario(usuario):

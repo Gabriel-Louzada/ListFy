@@ -11,7 +11,6 @@ NOME_COOKIE_AUTH = "token"
 
 async def obter_usuario_logado(request: Request) -> Optional[Usuario]:
     try:
-        print("To aqui! obter usuario logado")
         token = request.cookies[NOME_COOKIE_AUTH]
         if token.strip() == "":
             return None
