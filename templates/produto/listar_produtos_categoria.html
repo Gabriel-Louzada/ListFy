@@ -24,7 +24,7 @@
                 <td style="text-align: center;">{{ p.nome_produto }}</td>
                 <td style="text-align: center;">{{ p.id_categoria }}</td>
                 <td style="text-align: center;">R$:{{ p.valor_produto }}</td>
-                <td style="text-align: center;" ><a href="/produto/alterar_produto/{{ p.id_produto }}">alterar</a></td>
+                <td style="text-align: center;" ><a href="/produto/alterar_produto/{{ p.id_produto }}" class="btn btn-secondary"><i class="bi bi-pencil"></i></a></td>
             </tr>
             {% endfor %}
         </table>
