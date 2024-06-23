@@ -34,7 +34,7 @@ def alterar_categoria(categoria: Categoria):
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            cursor.execute(SQL_INSERIR_CATEGORIA,(categoria.nome_categoria, ))
+            cursor.execute(SQL_ALTERAR_CATEGORIA,(categoria.nome_categoria,categoria.id_categoria))
     except sqlite3.Error as e:
         print(f"Função alterar_categoria não esta funcionando corretamente {e}")
 

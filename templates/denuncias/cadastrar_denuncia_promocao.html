@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+
+<main>
+    <div class="container">
+        <div class="row d-flex justify-content-between px-2 mt-3 ">
+            <div class="col-7 col-xl-10 col-md-8 p-0 p-sm-1 ">
+                <h2>Denuncias</h2>
+            </div>
+            <div class="col-5 col-xl-2 col-md-4 p-0 p-sm-1 justify-content-between">
+                <a href="/denuncia/cadastrar" class="btn btn-primary">Cadastrar</a>
+                <a href="/denuncia" class="btn btn-danger"> <i class="bi bi-arrow-left-square"></i></a>
+            </div>
+        </div>
+        <form class="row g-3 needs-validation" action="/denuncia/post_cadastrar_denuncia" method="post">
+            <div class="col-12">
+                <input type="hidden" name="id_usuario" id="id_usuario" value="{{usuario.id_usuario}}">
+                <label for="assunto" class="form-label">Assunto:</label>
+                <input type="text" name="assunto" class="form-control" id="assunto" value="Promoção Falsa"  required>
+                <div class="valid-feedback">
+                    OK
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="descricao" class="form-label">Descricao:</label>
+                <textarea name="descricao" id="descricao" class="form-control"  id="floatingTextarea">O promoção do produto de ID {{promocao.id_produto}} não confere com o valor no estabelecimento: {{promocao.estabelecimento}} ID da lista {{promocao.id_lista}}</textarea>
+                <div class="valid-feedback">
+                    ok
+                </div>
+            </div>
+            <div class="col-12">
+                <p>Confira as informações antes de Enviar!</p>
+                <button class="btn btn-primary mx-3" type="submit">Enviar</button>
+                <a href="/" class="btn btn-danger"> Voltar</a>
+            </div>
+        </form>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

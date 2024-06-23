@@ -4,12 +4,13 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 
 from repo.categoria import *
-from repo.itens_lista import criar_tabela_itens_lista
+from repo.denuncia import *
+from repo.itens_lista import *
 from repo.lista import *
 from repo.produto import *
-from repo.promocao import criar_tabela_promocao
+from repo.promocao import *
 from repo.usuario import *
-from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes,promocao_routes
+from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes,promocao_routes,denuncia_routes
 from util.auth import middleware_autenticacao
 
 criar_tabela_usuario()
@@ -18,6 +19,7 @@ criar_tabela_categoria()
 criar_tabela_lista()
 criar_tabela_promocao()
 criar_tabela_itens_lista()
+criar_tabela_denuncia()
 
 app = FastAPI()
 
@@ -33,6 +35,7 @@ app.include_router(main_router.router)
 app.include_router(usuario_routes.router)
 app.include_router(itens_lista_routes.router)
 app.include_router(promocao_routes.router)
+app.include_router(denuncia_routes.router)
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)

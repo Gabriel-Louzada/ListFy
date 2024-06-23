@@ -2,7 +2,7 @@ SQL_CREATE_PROMOCAO = """
 CREATE TABLE IF NOT EXISTS "promocao" (
 	"id_produto"	    INTEGER,
 	"valor_promocao"	REAL NOT NULL,
-	"id_lista"	        INTEGER,
+	"id_lista"	      INTEGER,
     PRIMARY KEY("id_produto","id_lista"),
 	FOREIGN KEY("id_produto") REFERENCES "produto"("id_produto"),
     FOREIGN KEY("id_lista") REFERENCES "lista"("id_lista")
@@ -21,19 +21,6 @@ UPDATE promocao
  WHERE id_promocao=?
 """
 
-###### REVER
-SQL_OBTER_FLUTUACAO = """
-SELECT id_promocao, id_produto, valor_promocao, estabelecimento, id_lista
-  FROM promocao
-"""
-
-###### REVER
-SQL_OBTER_UMA_PROMOCAO = """
-SELECT id_promocao, id_produto, valor_promocao, estabelecimento
-  FROM promocao
- WHERE id_produto=?
-"""
-
 SQL_EXCLUIR_PROMOCAO = """
 DELETE FROM promocao
  WHERE id_promocao=?
@@ -44,7 +31,7 @@ DELETE FROM promocao
 SQL_CRIAR_PROMOCAO = """
 SELECT itens_lista.id_produto,
        itens_lista.valor,
-	   itens_lista.id_lista
+	     itens_lista.id_lista
   FROM itens_lista
  where itens_lista.id_lista = ?
 """
@@ -52,8 +39,8 @@ SELECT itens_lista.id_produto,
 SQL_OBTER_TODAS_PROMOCOES = """
 SELECT promocao.id_produto,
        min(promocao.valor_promocao),
-	   lista.id_lista,
-	   lista.estabelecimento,
+	     lista.id_lista,
+	     lista.estabelecimento,
        produto.nome_produto  
   from promocao,
        produto,

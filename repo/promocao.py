@@ -52,16 +52,6 @@ def excluir_promocao(id_promocao: int):
     except sqlite3.Error as e:
         print(f"Função excluir_promocao não esta funcionando corretamente {e}")
 
-def obter_uma_promocao(id_promocao: int) -> Promocao:
-    try:
-        with criar_conexao() as conexao:
-            cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_UMA_PROMOCAO, (id_promocao,)).fetchone()
-            return Promocao(*tupla)
-    except sqlite3.Error as e:
-        print(f"Função alterar_promocao não esta funcionando corretamente {e}")
-        return None
-    
 def criar_promocao(id_lista: int):
     try:
          with criar_conexao() as conexao:

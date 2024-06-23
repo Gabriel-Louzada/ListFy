@@ -11,6 +11,7 @@
 <body>
     {% set usuario = request.state.usuario%}
     {% include "header.html" %}
+    {% block cabecalho %}{% endblock %}
     {% include "include/mensagem.html" %}
     {% block conteudo %}{% endblock %}
     {% include "footer.html" %}

@@ -11,7 +11,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               {%- if not usuario: -%}
               <li class="nav-item">
-                <a class="nav-link text-light" href="/usuario/entrar">Usuario</a>
+                <a class="nav-link text-light" href="/usuario/entrar"> <i class="bi bi-person-circle" style="padding: 0px;"></i>Usuario</a>
               </li>
               {%- else: -%}
               <li class="nav-item dropdown">
@@ -23,17 +23,18 @@
                 </ul>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Cadastros
+                  <span><i class="bi bi-pencil-square p-1"></i>Cadastros</span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li><a class="dropdown-item" href="/produto">Produtos</a></li>
                   <li><a class="dropdown-item" href="/lista">Listas</a></li>
                   <li><a class="dropdown-item" href="/categorias">Categorias</a></li>
+                  <li><a class="dropdown-item" href="/denuncia">Denuncias</a></li>
                 </ul>
                 {%- endif -%}
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/promocao">Promoções</a>
+                <a class="nav-link text-light" href="/promocao"> <i class="bi bi-list-task p-1"></i>Promoções</a>
               </li>
             </ul>
             <form class="d-flex">

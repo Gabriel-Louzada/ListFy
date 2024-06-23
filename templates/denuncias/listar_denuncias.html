@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro de Produto{% endblock %}
+
+{% block conteudo %}
+
+<main>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-between px-2 mt-3 ">
+            <div class="col-7 col-xl-10 col-md-8 p-0 p-sm-1 ">
+                <h2>Denuncias</h2>
+            </div>
+            <div class="col-5 col-xl-2 col-md-4 p-0 p-sm-1 justify-content-between">
+                <a href="/denuncia/cadastrar/{{usuario.id_usuario}}" class="btn btn-primary"> Cadastrar</a>
+                <a href="/" class="btn btn-danger"> <i class="bi bi-arrow-left-square"></i></a>
+            </div>
+        </div>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Assunto</th>
+                <th>Data Abertura</th>
+                <th>*</th>
+            </tr>
+            {% for d in denuncias %}
+            <tr>
+                <td>{{d.id_denuncia}}</td>
+                <td>{{d.assunto}}</td>
+                <td>{{d.data}}</td>
+                <td>
+                    <a href="/denuncia/ver/{{d.id_denuncia}}" class="btn btn-primary">Ver</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+
+{% endblock %}
