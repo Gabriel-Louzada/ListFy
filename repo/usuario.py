@@ -81,7 +81,10 @@ def obter_por_email(email:str) -> Usuario:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
             tupla = cursor.execute(SQL_OBTER_POR_EMAIL, (email,)).fetchone()
-            return Usuario(*tupla)
+            if tupla == None:
+                return None
+            else:
+                return Usuario(*tupla)
     except sqlite3.Error as e:
         print(f"Função obter_por_email nao esta funcionando corretamente {e}")
         return None

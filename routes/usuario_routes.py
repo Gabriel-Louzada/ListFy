@@ -29,6 +29,11 @@ async def get_cadastrar(request: Request):
 @router.post("/post_entrar",response_model_include=RedirectResponse)
 async def post_entrar_usuario(email: str = Form(),senha: str = Form()):
     usuario = obter_por_email(email)
+    if not usuario:
+        response = RedirectResponse("/usuario/entrar", status_code=status.HTTP_302_FOUND)
+        adicionar_cookie_mensagem(response, "Email Não cadastrado, Clique em 'Quero Me Cadastrar' e Cadastre seu usuario")
+        return response
+      
     if not conferir_senha(senha, usuario.senha):
         response = RedirectResponse("/usuario/entrar", status_code=status.HTTP_302_FOUND)
         adicionar_cookie_mensagem(response, "Credenciais inválidas. Tente novamente.")
