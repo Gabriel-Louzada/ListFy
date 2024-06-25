@@ -11,7 +11,7 @@ def criar_tabela_promocao():
     except sqlite3.Error as e:
         print(f"Erro ao criar tabela promocao {e}")
 
-def obter_todas_promocao() -> list[Promocao]:
+def obter_todas_promocoes() -> list[Promocao]:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()

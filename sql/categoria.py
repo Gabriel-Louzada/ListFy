@@ -1,7 +1,7 @@
 SQL_CREATE_CATEGORIA = '''
 CREATE TABLE IF NOT EXISTS "categoria" (
 	"id_categoria"	INTEGER,
-	"nome"	TEXT NOT NULL,
+	"nome"	        TEXT NOT NULL,
 	PRIMARY KEY("id_categoria" AUTOINCREMENT)
 )'''
 

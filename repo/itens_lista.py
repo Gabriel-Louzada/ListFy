@@ -11,26 +11,15 @@ def criar_tabela_itens_lista():
     except sqlite3.Error as e:
         print(f"Erro ao criar tabela Itens_Lista {e}")
 
-def obter_todas_itens_lista() -> list[Itens_lista]:
+def obter_todos_itens_lista() -> list[Itens_lista]:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
             tuplas = cursor.execute(SQL_OBTER_TODOS_ITENS_LISTA).fetchall()
             return [Itens_lista(*t) for t in tuplas]
     except sqlite3.Error as e:
-        print(f"Função obter_todas_itens_lista não esta funcionando corretamente {e}")
+        print(f"Função obter_todos_itens_lista não esta funcionando corretamente {e}")
         return None 
-    
-def obter_todas_itens_lista_nome() -> list[Itens_lista]:
-    try:
-        with criar_conexao() as conexao:
-            cursor = conexao.cursor()
-            tuplas = cursor.execute(SQL_OBTER_TODOS_ITENS_LISTA).fetchall()
-            return [Itens_lista(*t) for t in tuplas]
-    except sqlite3.Error as e:
-        print(f"Função obter_todas_itens_lista não esta funcionando corretamente {e}")
-        return None 
-
 
 def obter_itens_lista_nomes(id_lista:int) -> list[Itens_lista]:
     try:
@@ -39,7 +28,7 @@ def obter_itens_lista_nomes(id_lista:int) -> list[Itens_lista]:
             tuplas = cursor.execute(SQL_OBTER_ITENS_LISTA_NOMES,(id_lista,)).fetchall()
             return [Itens_lista(*t) for t in tuplas]
     except sqlite3.Error as e:
-        print(f"Função obter_todas_itens_lista não esta funcionando corretamente {e}")
+        print(f"Função obter_todos_itens_lista não esta funcionando corretamente {e}")
         return None 
 
 def inserir_itens_lista(itens_lista: Itens_lista):
@@ -79,7 +68,7 @@ def obter_item_lista(id_produto: int) -> Itens_lista:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()
-            tupla = cursor.execute(SQL_OBTER_UM_ITENS_LISTA, (id_produto,)).fetchone()
+            tupla = cursor.execute(SQL_OBTER_UM_ITEM_LISTA, (id_produto,)).fetchone()
             return Itens_lista(*tupla)
     except sqlite3.Error as e:
         print(f"Função alterar_itens_lista não esta funcionando corretamente {e}")

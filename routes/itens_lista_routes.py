@@ -73,4 +73,3 @@ async def post_remover_item_lista(
     id_produto: int = Form()):
     excluir_itens_lista(id_lista,id_produto)
     return RedirectResponse("/lista", status_code=status.HTTP_303_SEE_OTHER)
-

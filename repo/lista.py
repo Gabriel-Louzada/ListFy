@@ -21,7 +21,7 @@ def obter_todos_lista() -> list[Lista]:
         print(f"Função obter_todos_lista nao esta funcionando corretamente {e}")
         return None 
     
-def obter_todos_lista_usuario(id: int) -> list[Lista]:
+def obter_todas_listas_usuario(id: int) -> list[Lista]:
     try:
         with criar_conexao() as conexao:
             cursor = conexao.cursor()

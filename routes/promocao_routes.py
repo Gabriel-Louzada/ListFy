@@ -10,5 +10,5 @@ templates = Jinja2Templates(directory = "templates")
 
 @router.get("/", response_class=HTMLResponse)
 async def get_listar(request: Request):
-    promocao = obter_todas_promocao()
+    promocao = obter_todas_promocoes()
     return templates.TemplateResponse("/promocao/promocao.html", {"request": request, "promocao":promocao})
