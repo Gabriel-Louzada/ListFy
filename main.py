@@ -12,6 +12,7 @@ from repo.promocao import *
 from repo.usuario import *
 from routes import produto_routes,categoria_routes,lista_routes,main_router,usuario_routes,itens_lista_routes,promocao_routes,denuncia_routes
 from util.auth import middleware_autenticacao
+from util.exceptions import configurar_excecoes
 
 criar_tabela_usuario()
 criar_tabela_produto()
@@ -27,7 +28,7 @@ templates = Jinja2Templates(directory = "templates")
 
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 app.middleware(middleware_type="http")(middleware_autenticacao)
-
+configurar_excecoes(app)
 app.include_router(produto_routes.router)
 app.include_router(categoria_routes.router)
 app.include_router(lista_routes.router)
